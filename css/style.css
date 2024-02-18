@@ -105,41 +105,43 @@ footer{
 /*Your Code Here*/
 /* PLEASE DO NOT REMOVE MY COMMENTS.  THEY HELP US HELP YOU DEBUG. */
 
+.overview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
 /* Step 1: Write selector/rule property to add an underline when
 links in the navigation are in the hover or focus state.*/
 
-nav a:hover, nav a:focus {
+nav a:hover, 
+nav a:focus {
   text-decoration: underline;
 }
 
 /* Step 2a: Write selector/rule property to position the default position for the skip class element*/
-.skip a {
-  position: absolute;
-  top: -40px;
+.skip {
+  position: fixed;
   left: 0;
   padding: 6px;
-  background-color: white;
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-  -webkit-transition: top 1s ease-out;
-  transition: top 1s ease-out;
-  z-index: 1;
 }
 
 /* Step 2b: Write selector/rule property to position the skip class element when it is in focus*/
 
 .skip a:focus {
-  position: relative;
-  top: 20px;
-  border: 2px solid black;
+  top: 20px; /* Positioned 20px below the top of its parent when in focus */
 }
+
 
 /* Step 3: Write selector/rule property to style all elements when in focus*/
 
 *:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px black;
+  border: 2px;
+  border-style: 2px;
+  border-color: black
 }
 
 /* Step 4: Write selector/rule property to style the container */
@@ -147,24 +149,19 @@ nav a:hover, nav a:focus {
 .container {
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
-  grid-gap: 15px;
-  grid-row-gap: 15px;
+  gap: 15px;
 }
 
 /* Step 5: Write selector/rule property to add the background image to the 
 first div in the grid  and place it in the grid. */
-
-.container > :first-child {
-  grid-column: 1 / span 3;
-  background-image: url("images/header.jpg");
-  background-size: cover;
+.container  div:first-child {
+  grid-column: 1 / -1; /* Take up all columns */
+  grid-template-columns: 1fr 5fr 1fr;
+  background-image: url("images/header.jpg"); /* Use header.jpg as a background image */
+  background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
+  background-size: cover;
+  background-position: center;
 }
 
 
@@ -173,127 +170,109 @@ first div in the grid  and place it in the grid. */
 
       /*This will be a lot of rules.... but be strategic and combine seletors*/
       .about, .method, .clients, .contact {
-        grid-column: 2 / 3;
-        grid-row: 2 / 3;
+        grid-column: 2;
+        grid-column: span 1; /* Begin in 2nd column and span one column */
+      }
+      
+      /* Begin on the 2nd, 3rd, 4th, and 5th rows respectively */
+      .about {
+        grid-row: 2;
       }
       
       .method {
-        grid-row: 3 / 4;
+        grid-row: 3;
       }
       
       .clients {
-        grid-row: 4 / 5;
+        grid-row: 4;
       }
       
       .contact {
-        grid-row: 5 / 6;
-      }
+        grid-row: 5;
+      } 
 
       .about-image, .method-image, .clients-image, .contact-image {
-        grid-column: 1 / -1; /* covers all columns */
-        grid-row: 2 / 7; /* adjust row numbers as needed */
-        height: 600px;
-        overflow: hidden; /* hides any content that goes outside the grid cell */
-        max-height: 600px; /* limits the height */
+        grid-column: span 1; /* Cover all columns */
+        grid-row: 2; /* Begin on the 2nd row for .about-image */
+        max-height: 600px; /* Maximum height of 600px */
+        overflow: hidden; /* Hide any content that goes outside their grid cell */
       }
-
+      
+      .clients-image {
+        grid-row: 4; /* Begin on the 4th row for .clients-image */
+      }
+      
+      .contact-image {
+        grid-row: 5;
+      }
+      
+      .about-image {
+        grid-row: 2;
+      }
+      
+      .method-image {
+        grid-row: 3;
+      }
  /* Step 8: Write the selector/rule property to style the .text-block class. */
-
- .text-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.text-block {
+  align-self:center;
+  max-height: 250px;
+  overflow: scroll;
+  justify-self: center;
   text-align: center;
 }
 
-/* Add your media query here */
 
-@media (min-width: 800px) {
+/* Add your media query here */
+@media only screen and (min-width: 800px) {
   nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
     padding: 30px 0;
-    background-color: #ddd;
     text-align: right;
   }
-}
-
-
   /* Step 9: Write the selector/rule property to style the nav element */
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #ddd;
-  }
+  padding-left:0px;
+  padding-right: 0px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: right;  
+}
  
   /* Step 10: Write the selector/rule property to update the .container class */
-
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 50px;
-    padding: 30px 0;
-    background-color: #ddd;
-    text-align: left;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav li {
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav a {
-    display: block;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
+  .container {
+    display: grid;
+    grid-template-columns: 50px auto 500px auto 50px;
   }
 
   /* Steps 11 and 12: Update the grid-column property of the grid's children (where-needed)*/
 
-  .container {
-    display: grid;
-    grid-template-columns: 50px auto 500px auto 50px;
-    grid-gap: 15px;
+  /*.about-image,
+  .clients-image,
+  .method-image,
+  .contact-image {
+    grid-column: 3;
+    grid-row: 2;
+  } */
+  
+  .about,
+  .method,
+  .clients,
+  .contact,
+  .about-image,
+  .method-image,
+  .clients-image,
+  .contact-image {
+    grid-column: 3 / 5;
   }
 
-.about,
-.clients,
-.method-image,
-.contact-image {
-  grid-column: 3 / span 2;
-  max-height: 600px;
-  overflow: hidden;
-}
-
-.method,
-.contact,
-.about-image,
-.clients-image {
-  grid-column: 2 / span 2;
-  max-height: 600px;
-  overflow: hidden;
-}
+  .method,
+  .contact,
+  .about-image,
+  .clients-image {
+    grid-column: 2 / 4;
+  }
 
  /* Step 13: Write the selector/rule property to update the .text-block class */
-
  .text-block {
-  grid-column: 2 / span 3;
-  max-height: 250px;
-  overflow-y: auto;
-  padding: 15px;
-  box-sizing: border-box;
-}
+  max-height: 250
+ }
+
