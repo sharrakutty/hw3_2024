@@ -204,27 +204,33 @@ first div in the grid  and place it in the grid. */
       .method-image {
         grid-row: 3;
       }
+      
  /* Step 8: Write the selector/rule property to style the .text-block class. */
 .text-block {
   align-self:center;
   overflow: auto;
   text-align: center;
+  padding: 1rem;
 }
 
 
 /* Add your media query here */
+
 @media only screen and (min-width: 800px) {
   nav {
     padding: 30px 0;
     text-align: right;
+    width: 100%;
   }
   /* Step 9: Write the selector/rule property to style the nav element */
   nav {
     padding: 30px 0 30px 0;
+    border-top: 1px solid #ccc;
     text-align: right;
   } 
 }
- 
+
+
   /* Step 10: Write the selector/rule property to update the .container class */
   .container {
     display: grid;
@@ -232,7 +238,7 @@ first div in the grid  and place it in the grid. */
   }
 
   /* Steps 11 and 12: Update the grid-column property of the grid's children (where-needed)*/
- 
+  
   .about,
   .method,
   .clients,
